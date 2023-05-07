@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Image } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
 const HeaderLogo = require("../assets/images/Logo.png");
 
 
@@ -11,5 +11,7 @@ const Header = () => {
     )
 };
 
-
+const style = StyleSheet.create({
+    
+})
 export default Header;
