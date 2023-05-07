@@ -31,7 +31,9 @@ const OnboardingScreen = () => {
                     />
                 ))
             }
-            <Buttons buttonLabel="Next" />
+            <View style={{justifyContent: "flex-end", flexDirection: "row"}}>
+                <Buttons styles={styles.button} buttonLabel="Next" />
+            </View>
         </View>
     )
 };
@@ -44,6 +46,9 @@ const styles = StyleSheet.create({
     },
     texts: {
 
+    },
+    button: {
+        backgroundColor: "blue"
     }
 })
 export default OnboardingScreen;

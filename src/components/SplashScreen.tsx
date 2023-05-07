@@ -2,7 +2,7 @@ import React from "react"
 import { Dimensions, Image, StyleSheet, View } from "react-native"
 const LittleLemonLogo = require("../assets/images/Logo.png")
 
-const dimensions = Dimensions.get("screen")
+export const dimensions = Dimensions.get("screen")
 const SplashScreen = () => {
     return(
         <View style={styles.container}>

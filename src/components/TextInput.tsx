@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
         fontFamily: 'ANB-B',
     },
     labelStyle: {
-        paddingLeft: -10
+        paddingLeft: -10,
+        fontWeight: "bold"
     }
 })
 export default TextsInput;
