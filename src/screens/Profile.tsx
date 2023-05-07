@@ -1,21 +1,31 @@
-import React from "react";
-import { View } from "react-native/types";
+import React, { useState } from "react";
+import { View } from "react-native";
 import TextsInput from "../components/TextInput";
 
 
 
 const Profile = () => {
-    const fields = ["Firstname", "Lastname", "Email", "Phone"]
+    const [profileState, setProfileState] = useState({
+        formEntries: {
+            "Firstname": "", 
+            "Lastname": "", 
+            "Email": "", 
+            "Phone": ""
+        }
+    });
+    const onChange = (field: string, value: string) => {
+
+    }
     return(
         <View>
             {
-                fields.map(field => (
+                Object.keys(profileState.formEntries).map(field => (
                     <TextsInput
                         fieldname={field}
                         key={field}
-                        defaultValue={props.state.formEntries[field]}
+                        defaultValue={(profileState.formEntries as any)[field]}
                         keyboardType={field.toLowerCase() === 'email' ? 'email-address' : 'default'}
-                        onChangeText={(value) => props.onChange(field, value)}
+                        onChangeText={(value) => onChange(field, value)}
                         secureTextEntry={field.toLowerCase() === 'password' ? true : false}
                     />
                 ))
@@ -24,4 +34,4 @@ const Profile = () => {
     )
 };
 
-export const Profile
+export default Profile;

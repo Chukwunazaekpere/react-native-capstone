@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -19,30 +19,51 @@ import {
 
 import {
   Colors,
-  Header,
 } from 'react-native/Libraries/NewAppScreen';
 import MenuScreen from './src/components/MenuScreen';
-
-
+import OnboardingScreen from "./src/screens/Onboarding";
+import SplashScreen from './src/components/SplashScreen';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack"
+import Profile from './src/screens/Profile';
+const Stacks = createStackNavigator()
 
 const App = (): JSX.Element => {
+    const [appState, setAppState] = useState({
+      splash: true
+    })
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     };
+    useEffect(() => {
+      setTimeout(() => {
+        setAppState({
+          ...appState,
+          splash: false
+        })
+      }, 3000)
+    }, []);
     return (
         <SafeAreaView style={backgroundStyle}>
-            <StatusBar
+          {
+            appState.splash ?
+            <SplashScreen />
+            :
+            <React.Fragment>
+            <NavigationContainer>
+              <Stacks.Navigator>
+                <Stacks.Screen name='onboarding' component={OnboardingScreen} />
+                <Stacks.Screen name='profile' component={Profile} />
+              </Stacks.Navigator>
+            </NavigationContainer>
+            </React.Fragment>
+          }
+            {/* <StatusBar
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
-            />
-            <View
-                // contentInsetAdjustmentBehavior="automatic"
-                style={backgroundStyle}>
-                {/* <Header /> */}
-                <MenuScreen />
-            </View>
+            /> */}
         </SafeAreaView>
     );
 }

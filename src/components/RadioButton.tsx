@@ -1,11 +1,11 @@
 import React from "react";
 import { Text } from "react-native";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import componentStyles from "../assets/componentStyles";
 
 
 
 interface RadioButtonInterface {
-    // onChange: Function
     labelname: string
     backgroundColor: string
 }
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40
     },
-   
     container: {
         borderWidth: 2.5,
         paddingHorizontal: 10,

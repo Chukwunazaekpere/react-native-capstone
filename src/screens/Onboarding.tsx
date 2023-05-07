@@ -1,26 +1,38 @@
-import React from "react";
-import { View } from "react-native/types";
+import React, { useState } from "react";
+import { Text, View } from "react-native";
 import TextsInput from "../components/TextInput";
+import Header from "../components/Header";
+import Buttons from "../components/Button";
 
 
+const OnboardingScreen = () => {
+    const [onboardingState, setOnboardingState] = useState({
+        formEntries: {
+            "Firstname": "", 
+            "Email": "", 
+        }
+    })
+    const onChange = (field: string, value: string) => {
 
-const Profile = () => {
-    const fields = ["Firstname", "Email"]
+    }
     return(
         <View>
+            <Header />
+            <Text>Let us get to know you!</Text>
             {
-                fields.map(field => (
+                Object.keys(onboardingState.formEntries).map(field => (
                     <TextsInput
                         fieldname={field}
                         key={field}
-                        defaultValue={props.state.formEntries[field]}
+                        defaultValue={(onboardingState.formEntries as any)[field]}
                         keyboardType={field.toLowerCase() === 'email' ? 'email-address' : 'default'}
-                        onChangeText={(value) => props.onChange(field, value)}
+                        onChangeText={(value) => onChange(field, value)}
                     />
                 ))
             }
+            <Buttons buttonLabel="Next" />
         </View>
     )
 };
 
-export const Profile
+export default OnboardingScreen;
