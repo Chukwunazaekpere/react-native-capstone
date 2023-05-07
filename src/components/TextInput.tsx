@@ -1,6 +1,6 @@
 import componentStyles from "../assets/componentStyles";
 import React from "react";
-import { TextInput, KeyboardType, StyleSheet, View, Text } from "react-native";
+import { TextInput, KeyboardType, StyleSheet, View, Text, StyleProp } from "react-native";
 
 
 interface TextInputInterface {
@@ -9,6 +9,7 @@ interface TextInputInterface {
     keyboardType: KeyboardType
     defaultValue: string
     secureTextEntry?: boolean
+    style?: StyleProp
 }
 const TextsInput = (props: TextInputInterface) => {
     return(

@@ -33,7 +33,6 @@ const App = (): JSX.Element => {
       splash: true
     })
     const isDarkMode = useColorScheme() === 'dark';
-
     const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     };
@@ -43,28 +42,29 @@ const App = (): JSX.Element => {
           ...appState,
           splash: false
         })
-      }, 3000)
+      }, 4000)
     }, []);
     return (
-        <SafeAreaView style={backgroundStyle}>
-          {
-            appState.splash ?
+      <React.Fragment>
+        {
+          appState.splash ?
+          <React.Fragment>
+            <StatusBar backgroundColor={"#000"} />
             <SplashScreen />
-            :
-            <React.Fragment>
-            <NavigationContainer>
-              <Stacks.Navigator>
-                <Stacks.Screen name='onboarding' component={OnboardingScreen} />
-                <Stacks.Screen name='profile' component={Profile} />
-              </Stacks.Navigator>
-            </NavigationContainer>
             </React.Fragment>
-          }
-            {/* <StatusBar
-                barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-                backgroundColor={backgroundStyle.backgroundColor}
-            /> */}
-        </SafeAreaView>
+          :
+          <React.Fragment>
+          <NavigationContainer>
+            <Stacks.Navigator>
+              <Stacks.Screen options={{
+                header: () => undefined
+              }} name='onboarding' component={OnboardingScreen} />
+              <Stacks.Screen name='profile' component={Profile} />
+            </Stacks.Navigator>
+          </NavigationContainer>
+          </React.Fragment>
+        }
+      </React.Fragment>
     );
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import TextsInput from "../components/TextInput";
 import Header from "../components/Header";
 import Buttons from "../components/Button";
@@ -16,14 +16,15 @@ const OnboardingScreen = () => {
 
     }
     return(
-        <View>
+        <View style={styles.container}>
             <Header />
-            <Text>Let us get to know you!</Text>
+            <Text style={{textAlign: "center", fontSize: 20, marginVertical: 12}}>Let us get to know you!</Text>
             {
                 Object.keys(onboardingState.formEntries).map(field => (
                     <TextsInput
                         fieldname={field}
                         key={field}
+                        style={styles.texts}
                         defaultValue={(onboardingState.formEntries as any)[field]}
                         keyboardType={field.toLowerCase() === 'email' ? 'email-address' : 'default'}
                         onChangeText={(value) => onChange(field, value)}
@@ -34,5 +35,15 @@ const OnboardingScreen = () => {
         </View>
     )
 };
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        // alignItems: "center",
+        marginHorizontal: 20
+    },
+    texts: {
 
+    }
+})
 export default OnboardingScreen;
