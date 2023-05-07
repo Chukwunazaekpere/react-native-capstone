@@ -9,7 +9,7 @@ interface TextInputInterface {
     keyboardType: KeyboardType
     defaultValue: string
     secureTextEntry?: boolean
-    style?: StyleProp
+    style?: any
 }
 const TextsInput = (props: TextInputInterface) => {
     return(
